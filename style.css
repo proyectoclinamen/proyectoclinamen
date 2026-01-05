@@ -7,13 +7,21 @@
   --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Colores */
-  --bg: #fafafa;
-  --text: #1f2933;
-  --muted: #6b7280;
-  --soft: #374151;
-  --accent: #3b82f6;
-
+  --color-bg: #ffffff;
+  --color-text: #1c1c1c;
+  --color-text-secondary: #4a4a4a;
+  --color-muted: #7a7a7a;
+  --color-border: #e2e2e2;
+  --color-accent: #2a4f8d;
+}
+[data-theme="dark"] {
+  --color-bg: #0f1115;
+  --color-text: #e6e6e6;
+  --color-text-secondary: #b5b5b5;
+  --color-muted: #8a8a8a;
+  --color-border: #2a2d34;
+  --color-accent: #8ab4f8;
+}
   /* Layout */
   --max-width: 680px;
 }
