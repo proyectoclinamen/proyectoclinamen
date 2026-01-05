@@ -446,3 +446,37 @@ p {
   font-style: italic;
   color: var(--color-muted);
 }
+/* =========================
+   Dark mode (prefers-color-scheme)
+   ========================= */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1115;
+    --color-text: #e6e6e6;
+    --color-text-secondary: #b5b5b5;
+    --color-muted: #8a8a8a;
+
+    --color-border: #2a2d34;
+    --color-accent: #8ab4f8;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  a {
+    color: var(--color-accent);
+  }
+
+  .site-header,
+  .site-footer {
+    background-color: transparent;
+    border-color: var(--color-border);
+  }
+
+  .essay-content blockquote {
+    border-left-color: var(--color-accent);
+  }
+}
