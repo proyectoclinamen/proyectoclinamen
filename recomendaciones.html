@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Recomendaciones - Libros, películas y series que valen la pena">
+  <title>Recomendaciones - Tu Nombre</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="site-title">
+        <a href="index.html">Tu Nombre</a>
+      </div>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="ensayos.html">Ensayos</a></li>
+          <li><a href="recomendaciones.html" class="active">Recomendaciones</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container-wide">
+      <h1>Recomendaciones</h1>
+      <p class="mb-l">
+        Una colección curada de libros, películas y series que me han impactado, enseñado o simplemente entretenido de manera memorable. No son reseñas exhaustivas, sino apuntes personales sobre por qué vale la pena tu tiempo.
+      </p>
+
+      <!-- Filtros -->
+      <div class="filtros">
+        <button class="filtro-btn active" data-filter="todas">Todas</button>
+        <button class="filtro-btn" data-filter="libro">Libros</button>
+        <button class="filtro-btn" data-filter="pelicula">Películas</button>
+        <button class="filtro-btn" data-filter="serie">Series</button>
+      </div>
+
+      <!-- Grid de recomendaciones -->
+      <div class="recomendaciones-grid" id="recomendaciones-grid">
+        <!-- Las recomendaciones se cargarán aquí con JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2025 Tu Nombre. Todos los derechos reservados.</p>
+      <ul class="footer-links">
+        <li><a href="mailto:tu@email.com">Email</a></li>
+        <li><a href="https://twitter.com/tuusuario" target="_blank" rel="noopener">Twitter</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Data y Script -->
+  <script src="data/recomendaciones.js"></script>
+  <script>
+    // Renderizar recomendaciones
+    function renderRecomendaciones() {
+      const grid = document.getElementById('recomendaciones-grid');
+      grid.innerHTML = '';
+      
+      recomendaciones.forEach(rec => {
+        const card = document.createElement('div');
+        card.className = `recomendacion-card`;
+        card.setAttribute('data-tipo', rec.tipo);
+        
+        card.innerHTML = `
+          <div class="recomendacion-imagen">
+            ${rec.imagen ? `<img src="${rec.imagen}" alt="${rec.titulo}">` : ''}
+          </div>
+          <h3 class="recomendacion-titulo">${rec.titulo}</h3>
+          <div class="recomendacion-autor">${rec.autor}</div>
+          <div class="recomendacion-tipo">${rec.tipo}</div>
+        `;
+        
+        grid.appendChild(card);
+      });
+    }
+
+    // Sistema de filtros
+    const filtros = document.querySelectorAll('.filtro-btn');
+    const cards = () => document.querySelectorAll('.recomendacion-card');
+
+    filtros.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Actualizar botón activo
+        filtros.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Filtrar cards
+        const filter = btn.getAttribute('data-filter');
+        
+        cards().forEach(card => {
+          if (filter === 'todas') {
+            card.classList.remove('hidden');
+          } else {
+            if (card.getAttribute('data-tipo') === filter) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          }
+        });
+      });
+    });
+
+    // Inicializar
+    renderRecomendaciones();
+  </script>
+
+</body>
+</html>

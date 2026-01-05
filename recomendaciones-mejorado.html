@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Recomendaciones - Libros, películas y series que valen la pena">
+  <title>Recomendaciones - Tu Nombre</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Estilos adicionales para la sección mejorada de recomendaciones */
+    .controles-filtros {
+      display: flex;
+      gap: var(--espacio-m);
+      flex-wrap: wrap;
+      align-items: flex-start;
+      margin-bottom: var(--espacio-l);
+      padding-bottom: var(--espacio-m);
+      border-bottom: 1px solid var(--color-borde);
+    }
+
+    .grupo-filtros {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .grupo-filtros label {
+      font-family: var(--font-sans);
+      font-size: var(--texto-pequeno);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--color-texto-suave);
+      display: block;
+      margin-bottom: var(--espacio-xs);
+    }
+
+    .filtros-tipo {
+      display: flex;
+      gap: var(--espacio-xs);
+      flex-wrap: wrap;
+    }
+
+    .select-year {
+      width: 100%;
+      max-width: 200px;
+      font-family: var(--font-sans);
+      font-size: var(--texto-pequeno);
+      padding: var(--espacio-xs) var(--espacio-s);
+      border: 1px solid var(--color-borde);
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      border-radius: var(--radio-border);
+      cursor: pointer;
+      transition: all var(--transicion);
+    }
+
+    .select-year:hover,
+    .select-year:focus {
+      border-color: var(--color-acento);
+      outline: none;
+    }
+
+    .checkbox-favoritos {
+      display: flex;
+      align-items: center;
+      gap: var(--espacio-xs);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-favoritos input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--color-acento);
+    }
+
+    .checkbox-favoritos span {
+      font-family: var(--font-sans);
+      font-size: var(--texto-pequeno);
+      color: var(--color-texto);
+    }
+
+    .estadisticas {
+      font-family: var(--font-sans);
+      font-size: var(--texto-pequeno);
+      color: var(--color-texto-suave);
+      display: flex;
+      gap: var(--espacio-s);
+      flex-wrap: wrap;
+      margin-top: var(--espacio-s);
+    }
+
+    .estadisticas span {
+      padding: 4px 10px;
+      background-color: var(--color-fondo-alt);
+      border-radius: var(--radio-border);
+    }
+
+    .recomendacion-año {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--color-texto-suave);
+      margin-top: 4px;
+    }
+
+    .recomendacion-favorito {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 20px;
+      color: var(--color-acento);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .recomendacion-card {
+      position: relative;
+    }
+
+    .recomendacion-descripcion {
+      font-size: 15px;
+      color: var(--color-texto-suave);
+      line-height: 1.5;
+      margin-top: var(--espacio-xs);
+    }
+
+    .sin-resultados {
+      text-align: center;
+      padding: var(--espacio-xl) var(--espacio-m);
+      color: var(--color-texto-suave);
+    }
+
+    .sin-resultados h3 {
+      font-size: var(--texto-grande);
+      margin-bottom: var(--espacio-s);
+    }
+
+    /* Animación de entrada */
+    .recomendacion-card {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="site-title">
+        <a href="index.html">Tu Nombre</a>
+      </div>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="ensayos.html">Ensayos</a></li>
+          <li><a href="recomendaciones.html" class="active">Recomendaciones</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container-wide">
+      <h1>Recomendaciones</h1>
+      <p class="mb-l">
+        Una colección curada de libros, películas y series que me han impactado, enseñado o simplemente entretenido de manera memorable. Cada entrada incluye una breve nota personal sobre por qué vale la pena tu tiempo.
+      </p>
+
+      <!-- Controles y Filtros -->
+      <div class="controles-filtros">
+        
+        <!-- Filtro por tipo -->
+        <div class="grupo-filtros">
+          <label>Tipo de contenido</label>
+          <div class="filtros-tipo">
+            <button class="filtro-btn active" data-filter-tipo="todas">Todas</button>
+            <button class="filtro-btn" data-filter-tipo="libro">Libros</button>
+            <button class="filtro-btn" data-filter-tipo="pelicula">Películas</button>
+            <button class="filtro-btn" data-filter-tipo="serie">Series</button>
+          </div>
+        </div>
+
+        <!-- Filtro por año -->
+        <div class="grupo-filtros">
+          <label for="filter-year">Año</label>
+          <select id="filter-year" class="select-year">
+            <option value="todos">Todos los años</option>
+            <!-- Se llenará dinámicamente con JavaScript -->
+          </select>
+        </div>
+
+        <!-- Filtro por favoritos -->
+        <div class="grupo-filtros">
+          <label>Mostrar solo</label>
+          <label class="checkbox-favoritos">
+            <input type="checkbox" id="filter-favoritos">
+            <span>⭐ Favoritos</span>
+          </label>
+        </div>
+
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="estadisticas" id="estadisticas">
+        <!-- Se llenará dinámicamente -->
+      </div>
+
+      <!-- Grid de recomendaciones -->
+      <div class="recomendaciones-grid" id="recomendaciones-grid">
+        <!-- Las recomendaciones se cargarán aquí con JavaScript -->
+      </div>
+
+      <!-- Mensaje cuando no hay resultados -->
+      <div class="sin-resultados" id="sin-resultados" style="display: none;">
+        <h3>No hay resultados</h3>
+        <p>Intenta ajustar los filtros para ver más recomendaciones.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2025 Tu Nombre. Todos los derechos reservados.</p>
+      <ul class="footer-links">
+        <li><a href="mailto:tu@email.com">Email</a></li>
+        <li><a href="https://twitter.com/tuusuario" target="_blank" rel="noopener">Twitter</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Data y Script -->
+  <script src="data/recomendaciones-mejorado.js"></script>
+  <script>
+    // ==========================================================================
+    // ESTADO DE LA APLICACIÓN
+    // ==========================================================================
+    
+    let filtrosActivos = {
+      tipo: 'todas',
+      año: 'todos',
+      favorito: false
+    };
+
+    // ==========================================================================
+    // INICIALIZACIÓN
+    // ==========================================================================
+    
+    function inicializar() {
+      // Generar opciones de año
+      generarOpcionesAño();
+      
+      // Renderizar recomendaciones iniciales
+      renderizarRecomendaciones();
+      
+      // Mostrar estadísticas
+      actualizarEstadisticas();
+      
+      // Configurar event listeners
+      configurarEventListeners();
+    }
+
+    // ==========================================================================
+    // GENERACIÓN DE FILTROS
+    // ==========================================================================
+    
+    function generarOpcionesAño() {
+      const selectYear = document.getElementById('filter-year');
+      const años = obtenerAñosUnicos();
+      
+      años.forEach(año => {
+        const option = document.createElement('option');
+        option.value = año;
+        option.textContent = año;
+        selectYear.appendChild(option);
+      });
+    }
+
+    // ==========================================================================
+    // RENDERIZADO DE RECOMENDACIONES
+    // ==========================================================================
+    
+    function renderizarRecomendaciones() {
+      const grid = document.getElementById('recomendaciones-grid');
+      const sinResultados = document.getElementById('sin-resultados');
+      
+      // Obtener recomendaciones filtradas
+      const recomendacionesFiltradas = filtrarRecomendaciones(filtrosActivos);
+      
+      // Limpiar grid
+      grid.innerHTML = '';
+      
+      // Mostrar mensaje si no hay resultados
+      if (recomendacionesFiltradas.length === 0) {
+        grid.style.display = 'none';
+        sinResultados.style.display = 'block';
+        return;
+      } else {
+        grid.style.display = 'grid';
+        sinResultados.style.display = 'none';
+      }
+      
+      // Renderizar cada recomendación
+      recomendacionesFiltradas.forEach((rec, index) => {
+        const card = crearCardRecomendacion(rec, index);
+        grid.appendChild(card);
+      });
+    }
+
+    function crearCardRecomendacion(rec, index) {
+      const card = document.createElement('div');
+      card.className = 'recomendacion-card';
+      card.setAttribute('data-tipo', rec.tipo);
+      card.style.animationDelay = `${index * 0.05}s`;
+      
+      // Construir HTML de la card
+      let html = '';
+      
+      // Imagen/portada
+      html += `<div class="recomendacion-imagen">`;
+      if (rec.imagen) {
+        html += `<img src="${rec.imagen}" alt="${rec.titulo}">`;
+      }
+      html += `</div>`;
+      
+      // Indicador de favorito
+      if (rec.favorito) {
+        html += `<div class="recomendacion-favorito" title="Favorito">⭐</div>`;
+      }
+      
+      // Título
+      html += `<h3 class="recomendacion-titulo">${rec.titulo}</h3>`;
+      
+      // Autor/Director
+      html += `<div class="recomendacion-autor">${rec.autor}</div>`;
+      
+      // Año
+      html += `<div class="recomendacion-año">${rec.año}</div>`;
+      
+      // Tipo
+      const tipoLabel = rec.tipo.charAt(0).toUpperCase() + rec.tipo.slice(1);
+      html += `<div class="recomendacion-tipo">${tipoLabel}</div>`;
+      
+      // Descripción (si existe)
+      if (rec.descripcion) {
+        html += `<p class="recomendacion-descripcion">${rec.descripcion}</p>`;
+      }
+      
+      card.innerHTML = html;
+      return card;
+    }
+
+    // ==========================================================================
+    // ESTADÍSTICAS
+    // ==========================================================================
+    
+    function actualizarEstadisticas() {
+      const stats = obtenerEstadisticas();
+      const recomendacionesFiltradas = filtrarRecomendaciones(filtrosActivos);
+      const estadisticasDiv = document.getElementById('estadisticas');
+      
+      estadisticasDiv.innerHTML = `
+        <span>Mostrando: ${recomendacionesFiltradas.length} de ${stats.total}</span>
+        <span>📚 ${stats.libros} libros</span>
+        <span>🎬 ${stats.peliculas} películas</span>
+        <span>📺 ${stats.series} series</span>
+        <span>⭐ ${stats.favoritos} favoritos</span>
+      `;
+    }
+
+    // ==========================================================================
+    // EVENT LISTENERS
+    // ==========================================================================
+    
+    function configurarEventListeners() {
+      // Filtros de tipo
+      const filtrosTipo = document.querySelectorAll('[data-filter-tipo]');
+      filtrosTipo.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Actualizar UI
+          filtrosTipo.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          // Actualizar filtro
+          filtrosActivos.tipo = btn.getAttribute('data-filter-tipo');
+          
+          // Re-renderizar
+          renderizarRecomendaciones();
+          actualizarEstadisticas();
+        });
+      });
+
+      // Filtro de año
+      const selectYear = document.getElementById('filter-year');
+      selectYear.addEventListener('change', (e) => {
+        filtrosActivos.año = e.target.value;
+        renderizarRecomendaciones();
+        actualizarEstadisticas();
+      });
+
+      // Filtro de favoritos
+      const checkboxFavoritos = document.getElementById('filter-favoritos');
+      checkboxFavoritos.addEventListener('change', (e) => {
+        filtrosActivos.favorito = e.target.checked;
+        renderizarRecomendaciones();
+        actualizarEstadisticas();
+      });
+    }
+
+    // ==========================================================================
+    // EJECUTAR AL CARGAR LA PÁGINA
+    // ==========================================================================
+    
+    document.addEventListener('DOMContentLoaded', inicializar);
+  </script>
+
+</body>
+</html>
