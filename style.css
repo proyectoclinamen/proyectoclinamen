@@ -324,3 +324,71 @@ p {
   font-size: 0.9rem;
   color: var(--color-muted);
 }
+/* =========================
+   Ensayos – Índice
+   ========================= */
+
+.essay-index {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.essay-index-header {
+  margin-bottom: 4rem;
+}
+
+.essay-index-header h1 {
+  font-family: var(--font-sans);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.essay-index-header p {
+  font-family: var(--font-serif);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.essay-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.essay-list-item {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.essay-list-item:first-child {
+  border-top: none;
+}
+
+.essay-list-item time {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+
+.essay-list-item h2 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem;
+}
+
+.essay-list-item h2 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.essay-list-item h2 a:hover {
+  text-decoration: underline;
+}
+
+.essay-list-item p {
+  font-family: var(--font-serif);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
