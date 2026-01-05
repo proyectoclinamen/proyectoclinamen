@@ -480,3 +480,64 @@ p {
     border-left-color: var(--color-accent);
   }
 }
+/* =========================
+   Refinamientos editoriales
+   ========================= */
+
+/* Links */
+a {
+  text-decoration: none;
+  color: var(--color-accent);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Links dentro de texto largo */
+.essay-content a,
+.about-content a {
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.25);
+}
+
+.essay-content a:hover,
+.about-content a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Separadores más suaves */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 4rem 0;
+}
+
+/* Header: peso más editorial */
+.site-title a {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Navegación más discreta */
+.site-nav a {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.site-nav a.active {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Listas con mejor ritmo */
+ul li {
+  margin-bottom: 0.4rem;
+}
+
+/* Párrafos: microajuste */
+p {
+  letter-spacing: 0.01em;
+}
