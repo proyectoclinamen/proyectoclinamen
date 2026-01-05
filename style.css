@@ -548,3 +548,19 @@ ul li {
 p {
   letter-spacing: 0.01em;
 }
+/* =========================
+   Theme toggle
+   ========================= */
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.theme-toggle:hover {
+  color: var(--color-text);
+}
