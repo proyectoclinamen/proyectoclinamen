@@ -451,15 +451,14 @@ p {
    ========================= */
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0f1115;
-    --color-text: #e6e6e6;
-    --color-text-secondary: #b5b5b5;
-    --color-muted: #8a8a8a;
-
-    --color-border: #2a2d34;
-    --color-accent: #8ab4f8;
-  }
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1c1c1c;
+  --color-text-secondary: #4a4a4a;
+  --color-muted: #7a7a7a;
+  --color-border: #e2e2e2;
+  --color-accent: #2a4f8d;
+}
 
   body {
     background-color: var(--color-bg);
